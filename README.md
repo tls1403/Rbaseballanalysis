@@ -1,1 +1,1 @@
-# Rbaseballanalysis
+R을 이용한 야구데이터 분석 공부 파일입니다!
