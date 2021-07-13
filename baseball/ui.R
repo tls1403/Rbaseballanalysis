@@ -13,21 +13,19 @@ library(shiny)
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Correlation between hit and Run scored",aline = "center"),
 
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
+            selectInput("var1","select x variable",choices = c("H"=1,"R"=2,"ERA"=3)),
+            selectInput("var2","select Y variable",choices = c("H"=1,"R"=2,"ERA"=3))
         ),
-
+        
         # Show a plot of the generated distribution
         mainPanel(
-            plotOutput("distPlot")
-        )
-    )
-))
+            plotOutput(h4("The correlation coefficient between the two bariables is"),
+                       textOutput("correlation"),br(),
+                       h4("Scatterplot between the two variables"),
+                       plotOutput("plot"))
+        )))

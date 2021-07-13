@@ -8,19 +8,12 @@
 #
 
 library(shiny)
+library(Lahman)
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
-
-    output$distPlot <- renderPlot({
-
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
-
-    })
-
-})
+shinyServer(function(input, output) ({
+    x <- reactive({dat[,as.numeric(input$var1)]})
+    y <- reactuve({dat[,as.numeric(input$var2)]})
+    output$correlation <- renderPrint({cor(x(),y())})
+    output$plot <- renderPlot(({plot(x(),y())}))
+        }))
